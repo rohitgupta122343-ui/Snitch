@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router';
 import { useAuth } from '../hook/useAuth';
-import { useNavigate } from 'react-router';
 import ContinueWithGoogle from '../components/ContinueWithGoogle';
 import { useSelector } from 'react-redux';
 
@@ -12,10 +11,10 @@ const Login = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const user = useSelector(state => state.auth.user)
+  const user = useSelector(state => state.auth?.user);
 
-  const {handleLogin} = useAuth()
-  const navigate = useNavigate()
+  const { handleLogin } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,47 +24,40 @@ const Login = () => {
     }));
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const user = await handleLogin({
-        email:formData.email,
-        password:formData.password
-    })
+    const loggedUser = await handleLogin({
+      email: formData.email,
+      password: formData.password
+    });
 
-    if(user.role == 'buyyer'){
-      navigate('/')
-    }else if(user.role == 'seller'){
-      navigate('/seller/dashboard')
+    if (loggedUser?.role === 'buyyer') {
+      navigate('/');
+    } else if (loggedUser?.role === 'seller') {
+      navigate('/seller/dashboard');
     }
-    
-      
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#0b0c10] text-[#e4e1e7] relative flex flex-col justify-between overflow-x-hidden selection:bg-[#fabc4d]/30 selection:text-[#ffd700]">
-      {/* Background Ambient Golden Glows */}
-      <div className="pointer-events-none fixed -top-40 -left-40 w-[500px] h-[500px] bg-[#e5a93c]/8 rounded-full blur-[160px]" />
-      <div className="pointer-events-none fixed -bottom-40 -right-40 w-[500px] h-[500px] bg-[#ffd700]/8 rounded-full blur-[160px]" />
-      <div className="pointer-events-none fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#e5a93c]/3 rounded-full blur-[200px]" />
-
+    <div className="min-h-screen w-full bg-[#FAF9F5] text-[#1A1A1A] flex flex-col justify-between selection:bg-[#EAE4D3] selection:text-[#1A1A1A] antialiased">
       {/* Top Navigation Bar */}
-      <header className="relative z-20 w-full border-b border-[#2a2c35]/70 bg-[#0b0c10]/80 backdrop-blur-md px-6 md:px-12 py-4">
+      <header className="w-full border-b border-[#E8E6DF] bg-white/90 backdrop-blur-md px-6 md:px-12 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-xl md:text-2xl font-black tracking-[0.35em] uppercase text-white font-sans">
+          <Link to="/" className="flex items-center gap-2">
+            <span className="text-xl md:text-2xl font-bold tracking-[0.25em] uppercase text-[#1A1A1A] font-serif">
               SNITCH
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ffd700]" />
-          </div>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#B89758]" />
+          </Link>
 
           <div className="flex items-center gap-6">
-            <span className="hidden sm:inline-block text-xs uppercase tracking-widest text-[#8e909a]">
-              Autumn / Winter 26
+            <span className="hidden sm:inline-block text-xs uppercase tracking-widest text-[#757470]">
+              Spring / Summer 26
             </span>
             <Link
               to="/register"
-              className="text-xs uppercase tracking-wider text-[#fabc4d] hover:text-[#ffd700] transition-colors py-1.5 px-3 rounded border border-[#e5a93c]/30 hover:border-[#ffd700]/60"
+              className="text-xs uppercase tracking-wider text-[#1A1A1A] hover:bg-[#F5F4EE] transition-colors py-1.5 px-3.5 rounded-md border border-[#E8E6DF] font-semibold"
             >
               Join Privé
             </Link>
@@ -73,87 +65,73 @@ const Login = () => {
         </div>
       </header>
 
-      {/* Main Container - Responsive Editorial Split on Desktop / Stacked on Mobile */}
-      <main className="relative z-10 flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 md:px-12 py-8 md:py-16 flex items-center">
+      {/* Main Container */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 md:px-12 py-10 md:py-16 flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 w-full items-center">
 
-          {/* LEFT COLUMN: Editorial Brand Showcase (Desktop/Tablet) */}
+          {/* LEFT COLUMN: Editorial Brand Showcase */}
           <div className="lg:col-span-6 flex flex-col justify-center space-y-8 order-2 lg:order-1">
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#e5a93c]/25 bg-[#e5a93c]/8 text-[11px] font-medium tracking-[0.2em] text-[#fabc4d] uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fabc4d] animate-pulse" />
-                <span>Member Portal • Autumn 26</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C5A880]/30 bg-white text-[11px] font-medium tracking-[0.2em] text-[#B89758] uppercase shadow-xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#B89758]" />
+                <span>Member Portal • Atelier Privé</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl xl:text-5xl font-serif text-white leading-[1.15] font-normal">
+              <h2 className="text-3xl sm:text-4xl xl:text-5xl font-serif text-[#1A1A1A] leading-[1.15] font-normal">
                 Curated Fashion. <br />
-                <span className="italic text-[#fabc4d]">Uncompromising Style.</span>
+                <span className="italic text-[#B89758]">Uncompromising Style.</span>
               </h2>
 
-              <p className="text-sm md:text-base text-[#8e909a] font-light leading-relaxed max-w-lg">
-                Sign in to manage your private orders, track tailored releases, and access exclusive member privileges.
+              <p className="text-sm md:text-base text-[#5C5A55] font-light leading-relaxed max-w-lg">
+                Sign in to manage your private orders, access reserved atelier drops, and explore tailored designer releases.
               </p>
             </div>
 
             {/* Privileges Highlight Card */}
-            <div className="relative rounded-2xl overflow-hidden border border-[#e5a93c]/20 bg-gradient-to-b from-[#1a1c23]/80 to-[#121216]/90 p-5 sm:p-6 backdrop-blur-md">
-              <div className="flex items-center justify-between pb-4 border-b border-[#2a2c35]/80 text-xs">
-                <span className="tracking-[0.15em] uppercase text-[#ffd700] font-medium">Member Benefits</span>
-                <span className="text-[#8e909a]">Privé Access</span>
+            <div className="rounded-2xl border border-[#E8E6DF] bg-white p-6 sm:p-7 shadow-xs space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-[#F0EFEB] text-xs">
+                <span className="tracking-[0.15em] uppercase text-[#1A1A1A] font-semibold">Member Privileges</span>
+                <span className="text-[#B89758] font-medium">Privé Access</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-5">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
                 <div className="space-y-1">
-                  <p className="text-xs text-[#8e909a] uppercase tracking-wider">Fast Checkout</p>
-                  <p className="text-sm text-white font-medium">One-Tap Vault</p>
+                  <p className="text-[10px] text-[#757470] uppercase tracking-wider">Fast Checkout</p>
+                  <p className="text-xs font-semibold text-[#1A1A1A]">One-Tap Vault</p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-xs text-[#8e909a] uppercase tracking-wider">Saved Fits</p>
-                  <p className="text-sm text-white font-medium">Tailored Profiles</p>
+                  <p className="text-[10px] text-[#757470] uppercase tracking-wider">Saved Fits</p>
+                  <p className="text-xs font-semibold text-[#1A1A1A]">Tailored Profiles</p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-xs text-[#8e909a] uppercase tracking-wider">Seller Console</p>
-                  <p className="text-sm text-white font-medium">Partner Portal</p>
+                  <p className="text-[10px] text-[#757470] uppercase tracking-wider">Seller Suite</p>
+                  <p className="text-xs font-semibold text-[#1A1A1A]">Partner Portal</p>
                 </div>
               </div>
 
-              <div className="mt-5 pt-4 border-t border-[#2a2c35]/60 flex items-center justify-between text-xs text-[#8e909a]">
-                <span>Discreet & Secure Sign-In</span>
-                <span className="text-[#fabc4d]">256-bit SSL</span>
+              <div className="pt-3 border-t border-[#F0EFEB] flex items-center justify-between text-[11px] text-[#757470]">
+                <span>Encrypted &amp; Secure Authentication</span>
+                <span className="text-[#1A1A1A] font-medium">256-bit SSL</span>
               </div>
             </div>
           </div>
 
           {/* RIGHT COLUMN: Minimalist Login Form Card */}
           <div className="lg:col-span-6 w-full max-w-lg mx-auto order-1 lg:order-2">
-            <div className="rounded-2xl sm:rounded-3xl bg-[#131317]/90 backdrop-blur-2xl border border-[#e5a93c]/20 p-6 sm:p-10 shadow-[0_24px_60px_rgba(0,0,0,0.7)] relative">
-
-              {/* Top Specular Gold Edge Light */}
-              <div className="absolute top-0 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-[#ffd700]/50 to-transparent" />
-
-              {/* Form Title & Header */}
+            <div className="rounded-2xl sm:rounded-3xl bg-white border border-[#E8E6DF] p-6 sm:p-10 shadow-[0_12px_44px_rgba(26,26,26,0.06)] relative">
               <div className="mb-7">
-                <div className="flex items-center gap-2 mb-2 sm:hidden">
-                  <span className="text-lg font-black tracking-[0.3em] uppercase text-white">
-                    SNITCH
-                  </span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#ffd700]" />
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-medium tracking-tight text-white mb-2">
+                <h3 className="text-2xl sm:text-3xl font-normal text-[#1A1A1A] mb-2 font-serif">
                   Welcome Back
                 </h3>
-                <p className="text-xs sm:text-sm text-[#8e909a] font-light">
+                <p className="text-xs sm:text-sm text-[#757470] font-light">
                   Enter your credentials to access your Snitch account.
                 </p>
               </div>
 
-              {/* Form: Email & Password Only */}
               <form onSubmit={handleSubmit} className="space-y-5">
-
-                {/* Email Address Field */}
                 <div className="space-y-1.5">
-                  <label className="block text-[11px] font-semibold tracking-wider text-[#d4c4b0] uppercase">
-                    Email Address <span className="text-[#fabc4d]">*</span>
+                  <label className="block text-[11px] font-semibold tracking-wider text-[#1A1A1A] uppercase">
+                    Email Address <span className="text-[#ba1a1a]">*</span>
                   </label>
                   <input
                     type="email"
@@ -161,19 +139,19 @@ const Login = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="julian.vance@example.com"
-                    className="w-full bg-[#121216] text-sm text-[#e4e1e7] placeholder-[#5c5e69] px-4 py-3 rounded-lg border border-[#2a2c35] focus:outline-none focus:border-[#fabc4d] focus:ring-1 focus:ring-[#fabc4d]/40 transition-all duration-300"
+                    className="w-full bg-[#FAF9F5] text-xs sm:text-sm text-[#1A1A1A] placeholder-[#8C8A85] px-4 py-3 rounded-lg border border-[#E8E6DF] focus:outline-none focus:border-[#1A1A1A] focus:bg-white transition-all duration-200"
+                    required
                   />
                 </div>
 
-                {/* Password Field */}
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between">
-                    <label className="block text-[11px] font-semibold tracking-wider text-[#d4c4b0] uppercase">
-                      Password <span className="text-[#fabc4d]">*</span>
+                    <label className="block text-[11px] font-semibold tracking-wider text-[#1A1A1A] uppercase">
+                      Password <span className="text-[#ba1a1a]">*</span>
                     </label>
                     <a
                       href="#forgot-password"
-                      className="text-[11px] text-[#8e909a] hover:text-[#fabc4d] transition-colors"
+                      className="text-[11px] text-[#757470] hover:text-[#1A1A1A] transition-colors"
                     >
                       Forgot password?
                     </a>
@@ -185,12 +163,13 @@ const Login = () => {
                       value={formData.password}
                       onChange={handleChange}
                       placeholder="••••••••••••"
-                      className="w-full bg-[#121216] text-sm text-[#e4e1e7] placeholder-[#5c5e69] px-4 py-3 pr-12 rounded-lg border border-[#2a2c35] focus:outline-none focus:border-[#fabc4d] focus:ring-1 focus:ring-[#fabc4d]/40 transition-all duration-300"
+                      className="w-full bg-[#FAF9F5] text-xs sm:text-sm text-[#1A1A1A] placeholder-[#8C8A85] px-4 py-3 pr-12 rounded-lg border border-[#E8E6DF] focus:outline-none focus:border-[#1A1A1A] focus:bg-white transition-all duration-200"
+                      required
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3.5 p-1 text-[#8e909a] hover:text-[#fabc4d] transition-colors duration-200 focus:outline-none"
+                      className="absolute right-3.5 p-1 text-[#757470] hover:text-[#1A1A1A] transition-colors duration-200 cursor-pointer"
                     >
                       {showPassword ? (
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -205,37 +184,29 @@ const Login = () => {
                     </button>
                   </div>
                 </div>
-                      
-                {/* Submit Action Button */}
+
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full relative group overflow-hidden rounded-lg p-[1px] font-semibold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300"
+                    className="w-full px-6 py-3.5 bg-[#1A1A1A] hover:bg-[#2D2D2D] text-white font-semibold text-xs uppercase tracking-wider rounded-lg shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
                   >
-                    
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#ffd700] via-[#fabc4d] to-[#e5a93c] rounded-lg transition-all duration-300 group-hover:shadow-[0_0_28px_rgba(250,188,77,0.4)]" />
-                    <div className="relative px-6 py-3.5 bg-gradient-to-r from-[#ffd700] to-[#e5a93c] text-[#0b0c10] font-semibold rounded-lg flex items-center justify-center gap-2 group-hover:bg-opacity-95 transition-all">
-                      <span className="flex items-center gap-1.5">
-                        Sign In
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                      </span>
-                    </div>
+                    <span>Sign In</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
                   </button>
                 </div>
-                <ContinueWithGoogle/>
+
+                <ContinueWithGoogle />
               </form>
 
-              {/* Golden Thread Divider */}
-              <div className="my-6 h-[1px] bg-gradient-to-r from-transparent via-[#e5a93c]/20 to-transparent" />
+              <div className="my-6 h-[1px] bg-[#E8E6DF]" />
 
-              {/* Navigation to Register */}
-              <div className="text-center text-xs text-[#8e909a]">
+              <div className="text-center text-xs text-[#757470]">
                 New to Snitch?{' '}
                 <Link
                   to="/register"
-                  className="text-[#fabc4d] hover:text-[#ffd700] font-medium transition-colors underline-offset-4 hover:underline"
+                  className="text-[#1A1A1A] font-semibold underline underline-offset-4 hover:text-[#B89758] transition-colors"
                 >
                   Create an account
                 </Link>
@@ -247,15 +218,15 @@ const Login = () => {
       </main>
 
       {/* Footer Bar */}
-      <footer className="relative z-10 border-t border-[#2a2c35]/50 py-5 px-6 md:px-12 text-center text-[11px] text-[#5c5e69] tracking-wider uppercase">
+      <footer className="border-t border-[#E8E6DF] py-5 px-6 md:px-12 text-center text-[11px] text-[#757470] tracking-wider uppercase bg-[#FAF9F5]">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p>© {new Date().getFullYear()} SNITCH APPAREL LTD. ALL RIGHTS RESERVED.</p>
-          <div className="flex items-center gap-4 text-[#8e909a]">
-            <a href="#privacy" className="hover:text-[#fabc4d] transition-colors">Privacy Policy</a>
+          <p>© {new Date().getFullYear()} SNITCH APPAREL ATELIER. ALL RIGHTS RESERVED.</p>
+          <div className="flex items-center gap-4">
+            <a href="#privacy" className="hover:text-[#1A1A1A] transition-colors">Privacy Policy</a>
             <span>•</span>
-            <a href="#terms" className="hover:text-[#fabc4d] transition-colors">Terms of Service</a>
+            <a href="#terms" className="hover:text-[#1A1A1A] transition-colors">Terms of Service</a>
             <span>•</span>
-            <a href="#support" className="hover:text-[#fabc4d] transition-colors">Concierge</a>
+            <a href="#support" className="hover:text-[#1A1A1A] transition-colors">Concierge</a>
           </div>
         </div>
       </footer>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const ContinueWithGoogle = () => {
@@ -6,21 +5,17 @@ const ContinueWithGoogle = () => {
     <div className="w-full">
       {/* Visual Divider */}
       <div className="relative my-4 flex items-center justify-center">
-        <div className="w-full border-t border-[#2a2c35]" />
-        <span className="absolute bg-[#131317] px-3 text-[11px] uppercase tracking-wider text-[#8e909a]">
+        <div className="w-full border-t border-[#E8E6DF]" />
+        <span className="absolute bg-white px-3 text-[11px] uppercase tracking-wider text-[#757470]">
           or
         </span>
       </div>
 
-      {/* Official Standard White Background Google Button */}
+      {/* Official Google Button */}
       <a
         href="/api/auth/google"
-        className="w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-lg border border-[#dadce0] bg-white hover:bg-[#f8fafd] active:bg-[#f1f3f4] text-[#3c4043] hover:text-[#202124] text-sm font-medium tracking-normal transition-colors duration-150 shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-[#4285f4]/40"
-        style={{
-          fontFamily: "'Roboto', 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-        }}
+        className="w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-lg border border-[#E8E6DF] bg-white hover:bg-[#FAF9F5] active:bg-[#F5F4EE] text-[#1A1A1A] text-xs sm:text-sm font-medium transition-colors duration-150 shadow-xs hover:border-[#1A1A1A]"
       >
-        {/* Official Google 4-color 'G' Logo */}
         <svg
           className="w-[18px] h-[18px] flex-shrink-0"
           viewBox="0 0 24 24"
@@ -51,4 +46,3 @@ const ContinueWithGoogle = () => {
 };
 
 export default ContinueWithGoogle;
-

@@ -9,7 +9,11 @@ const Protected = ({children,role="buyer"}) => {
     const loading = useSelector(state => state.auth.loading)
 
     if(loading){
-        return <div>Loading...</div>
+        return (
+          <div className="min-h-screen bg-[#FAF9F5] flex items-center justify-center text-[#757470] text-xs uppercase tracking-widest font-semibold">
+            Loading Atelier...
+          </div>
+        )
     }
 
     if(!user){

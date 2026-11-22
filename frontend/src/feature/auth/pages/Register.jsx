@@ -66,29 +66,24 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#0b0c10] text-[#e4e1e7] relative flex flex-col justify-between overflow-x-hidden selection:bg-[#fabc4d]/30 selection:text-[#ffd700]">
-      {/* Background Ambient Golden Light Spots */}
-      <div className="pointer-events-none fixed -top-40 -left-40 w-[500px] h-[500px] bg-[#e5a93c]/8 rounded-full blur-[160px]" />
-      <div className="pointer-events-none fixed -bottom-40 -right-40 w-[500px] h-[500px] bg-[#ffd700]/8 rounded-full blur-[160px]" />
-      <div className="pointer-events-none fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#e5a93c]/3 rounded-full blur-[200px]" />
-
+    <div className="min-h-screen w-full bg-[#FAF9F5] text-[#1A1A1A] flex flex-col justify-between selection:bg-[#EAE4D3] selection:text-[#1A1A1A] antialiased">
       {/* Top Navigation Bar */}
-      <header className="relative z-20 w-full border-b border-[#2a2c35]/70 bg-[#0b0c10]/80 backdrop-blur-md px-6 md:px-12 py-4">
+      <header className="w-full border-b border-[#E8E6DF] bg-white/90 backdrop-blur-md px-6 md:px-12 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-xl md:text-2xl font-black tracking-[0.35em] uppercase text-white font-sans">
+          <Link to="/" className="flex items-center gap-2">
+            <span className="text-xl md:text-2xl font-bold tracking-[0.25em] uppercase text-[#1A1A1A] font-serif">
               SNITCH
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ffd700]" />
-          </div>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#B89758]" />
+          </Link>
 
           <div className="flex items-center gap-6">
-            <span className="hidden sm:inline-block text-xs uppercase tracking-widest text-[#8e909a]">
-              Autumn / Winter 26
+            <span className="hidden sm:inline-block text-xs uppercase tracking-widest text-[#757470]">
+              Spring / Summer 26
             </span>
             <Link
               to="/login"
-              className="text-xs uppercase tracking-wider text-[#fabc4d] hover:text-[#ffd700] transition-colors py-1.5 px-3 rounded border border-[#e5a93c]/30 hover:border-[#ffd700]/60"
+              className="text-xs uppercase tracking-wider text-[#1A1A1A] hover:bg-[#F5F4EE] transition-colors py-1.5 px-3.5 rounded-md border border-[#E8E6DF] font-semibold"
             >
               Sign In
             </Link>
@@ -96,105 +91,94 @@ const Register = () => {
         </div>
       </header>
 
-      {/* Main Container - Split on Desktop / Stacked on Mobile & Tablet */}
-      <main className="relative z-10 flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 md:px-12 py-8 md:py-16 flex items-center">
+      {/* Main Container */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 md:px-12 py-10 md:py-16 flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 w-full items-center">
 
-          {/* LEFT COLUMN: Editorial Showcase & Brand Story (visible desktop/tablet, concise on mobile) */}
+          {/* LEFT COLUMN: Editorial Showcase & Brand Story */}
           <div className="lg:col-span-6 flex flex-col justify-center space-y-8 order-2 lg:order-1">
-
-            {/* Tag / Badge */}
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#e5a93c]/25 bg-[#e5a93c]/8 text-[11px] font-medium tracking-[0.2em] text-[#fabc4d] uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fabc4d] animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#C5A880]/30 bg-white text-[11px] font-medium tracking-[0.2em] text-[#B89758] uppercase shadow-xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#B89758]" />
                 <span>Snitch Privé • Member Club</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl xl:text-5xl font-serif text-white leading-[1.15] font-normal">
-                Redefining Fast Fashion <br />
-                <span className="italic text-[#fabc4d]">& Contemporary Fit.</span>
+              <h2 className="text-3xl sm:text-4xl xl:text-5xl font-serif text-[#1A1A1A] leading-[1.15] font-normal">
+                Redefining Contemporary <br />
+                <span className="italic text-[#B89758]">Fit &amp; Atelier Tailoring.</span>
               </h2>
 
-              <p className="text-sm md:text-base text-[#8e909a] font-light leading-relaxed max-w-lg">
-                Step into the vanguard of modern apparel. Experience weekly curated drops, precision silhouettes, and members-only preview privileges.
+              <p className="text-sm md:text-base text-[#5C5A55] font-light leading-relaxed max-w-lg">
+                Step into the vanguard of refined apparel. Experience seasonal curated drops, bespoke silhouettes, and members-only preview privileges.
               </p>
             </div>
 
-            {/* Editorial Showcase Card (Hidden on smallest mobile for sleekness, visible on sm and up) */}
-            <div className="relative rounded-2xl overflow-hidden border border-[#e5a93c]/20 bg-gradient-to-b from-[#1a1c23]/80 to-[#121216]/90 p-5 sm:p-6 backdrop-blur-md">
-              <div className="flex items-center justify-between pb-4 border-b border-[#2a2c35]/80 text-xs">
-                <span className="tracking-[0.15em] uppercase text-[#ffd700] font-medium">Limited Edition Drop</span>
-                <span className="text-[#8e909a]">AW26 Collection</span>
+            {/* Editorial Showcase Card */}
+            <div className="rounded-2xl border border-[#E8E6DF] bg-white p-6 sm:p-7 shadow-xs space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-[#F0EFEB] text-xs">
+                <span className="tracking-[0.15em] uppercase text-[#1A1A1A] font-semibold">Limited Atelier Drops</span>
+                <span className="text-[#B89758] font-medium">SS26 Collection</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-5">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
                 <div className="space-y-1">
-                  <p className="text-xs text-[#8e909a] uppercase tracking-wider">Priority Access</p>
-                  <p className="text-sm text-white font-medium">48h Early Drops</p>
+                  <p className="text-[10px] text-[#757470] uppercase tracking-wider">Priority Access</p>
+                  <p className="text-xs font-semibold text-[#1A1A1A]">48h Early Drops</p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-xs text-[#8e909a] uppercase tracking-wider">Fit Assurance</p>
-                  <p className="text-sm text-white font-medium">100% Exchange</p>
+                  <p className="text-[10px] text-[#757470] uppercase tracking-wider">Fit Assurance</p>
+                  <p className="text-xs font-semibold text-[#1A1A1A]">Complimentary Alterations</p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-xs text-[#8e909a] uppercase tracking-wider">Express Dispatch</p>
-                  <p className="text-sm text-white font-medium">White-Glove Care</p>
+                  <p className="text-[10px] text-[#757470] uppercase tracking-wider">Express Dispatch</p>
+                  <p className="text-xs font-semibold text-[#1A1A1A]">Archival Packaging</p>
                 </div>
               </div>
 
-              {/* Quote Footer */}
-              <div className="mt-5 pt-4 border-t border-[#2a2c35]/60 flex items-center justify-between text-xs text-[#8e909a]">
-                <span>250K+ fashion-forward patrons</span>
-                <span className="text-[#fabc4d]">★★★★★ 4.9/5</span>
+              <div className="pt-3 border-t border-[#F0EFEB] flex items-center justify-between text-[11px] text-[#757470]">
+                <span>250K+ discerning patrons worldwide</span>
+                <span className="text-[#B89758] font-semibold">★ 4.9/5</span>
               </div>
             </div>
 
-            {/* Partner Teaser */}
-            <div className="hidden lg:flex items-center gap-4 text-xs text-[#8e909a]">
-              <span className="w-8 h-[1px] bg-[#e5a93c]/40" />
-              <span>Are you a designer or fashion atelier? Check 'Register as Seller'</span>
+            <div className="hidden lg:flex items-center gap-3 text-xs text-[#757470]">
+              <span className="w-6 h-[1px] bg-[#B89758]" />
+              <span>Are you an independent designer or atelier? Register as a Seller partner below.</span>
             </div>
           </div>
 
           {/* RIGHT COLUMN: Minimalist Seamless Registration Form Card */}
           <div className="lg:col-span-6 w-full max-w-lg mx-auto order-1 lg:order-2">
-            <div className="rounded-2xl sm:rounded-3xl bg-[#131317]/90 backdrop-blur-2xl border border-[#e5a93c]/20 p-6 sm:p-10 shadow-[0_24px_60px_rgba(0,0,0,0.7)] relative">
-
-              {/* Top Specular Gold Edge Light */}
-              <div className="absolute top-0 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-[#ffd700]/50 to-transparent" />
-
-              {/* Header */}
+            <div className="rounded-2xl sm:rounded-3xl bg-white border border-[#E8E6DF] p-6 sm:p-10 shadow-[0_12px_44px_rgba(26,26,26,0.06)] relative">
               <div className="mb-7">
-                <h3 className="text-2xl sm:text-3xl font-medium tracking-tight text-white mb-2">
+                <h3 className="text-2xl sm:text-3xl font-normal text-[#1A1A1A] mb-2 font-serif">
                   Create Account
                 </h3>
-                <p className="text-xs sm:text-sm text-[#8e909a] font-light">
-                  Join Snitch for curated menswear and seamless checkout.
+                <p className="text-xs sm:text-sm text-[#757470] font-light">
+                  Join Snitch for curated tailoring and seamless checkout.
                 </p>
               </div>
 
               {/* Alerts */}
               {(localError || authError) && (
-                <div className="mb-5 px-4 py-3 rounded-lg border border-red-500/30 bg-red-950/20 text-red-300 text-xs tracking-wide flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
+                <div className="mb-5 px-4 py-3 rounded-lg border border-rose-200 bg-rose-50 text-rose-700 text-xs tracking-wide flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse" />
                   {localError || authError}
                 </div>
               )}
 
               {successMsg && (
-                <div className="mb-5 px-4 py-3 rounded-lg border border-[#fabc4d]/40 bg-[#fabc4d]/10 text-[#ffd700] text-xs tracking-wide flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#fabc4d]" />
+                <div className="mb-5 px-4 py-3 rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-800 text-xs tracking-wide flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
                   {successMsg}
                 </div>
               )}
 
-              {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-5">
-
+              <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Full Name */}
                 <div className="space-y-1.5">
-                  <label className="block text-[11px] font-semibold tracking-wider text-[#d4c4b0] uppercase">
-                    Full Name <span className="text-[#fabc4d]">*</span>
+                  <label className="block text-[11px] font-semibold tracking-wider text-[#1A1A1A] uppercase">
+                    Full Name <span className="text-[#ba1a1a]">*</span>
                   </label>
                   <input
                     type="text"
@@ -202,14 +186,15 @@ const Register = () => {
                     value={formData.fullName}
                     onChange={handleChange}
                     placeholder="e.g. Julian Vance"
-                    className="w-full bg-[#121216] text-sm text-[#e4e1e7] placeholder-[#5c5e69] px-4 py-3 rounded-lg border border-[#2a2c35] focus:outline-none focus:border-[#fabc4d] focus:ring-1 focus:ring-[#fabc4d]/40 transition-all duration-300"
+                    className="w-full bg-[#FAF9F5] text-xs sm:text-sm text-[#1A1A1A] placeholder-[#8C8A85] px-4 py-3 rounded-lg border border-[#E8E6DF] focus:outline-none focus:border-[#1A1A1A] focus:bg-white transition-all duration-200"
+                    required
                   />
                 </div>
 
                 {/* Email Address */}
                 <div className="space-y-1.5">
-                  <label className="block text-[11px] font-semibold tracking-wider text-[#d4c4b0] uppercase">
-                    Email Address <span className="text-[#fabc4d]">*</span>
+                  <label className="block text-[11px] font-semibold tracking-wider text-[#1A1A1A] uppercase">
+                    Email Address <span className="text-[#ba1a1a]">*</span>
                   </label>
                   <input
                     type="email"
@@ -217,24 +202,25 @@ const Register = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="julian.vance@example.com"
-                    className="w-full bg-[#121216] text-sm text-[#e4e1e7] placeholder-[#5c5e69] px-4 py-3 rounded-lg border border-[#2a2c35] focus:outline-none focus:border-[#fabc4d] focus:ring-1 focus:ring-[#fabc4d]/40 transition-all duration-300"
+                    className="w-full bg-[#FAF9F5] text-xs sm:text-sm text-[#1A1A1A] placeholder-[#8C8A85] px-4 py-3 rounded-lg border border-[#E8E6DF] focus:outline-none focus:border-[#1A1A1A] focus:bg-white transition-all duration-200"
+                    required
                   />
                 </div>
 
                 {/* Contact Number with Country Code Dropdown */}
                 <div className="space-y-1.5">
-                  <label className="block text-[11px] font-semibold tracking-wider text-[#d4c4b0] uppercase">
-                    Contact Number <span className="text-[#fabc4d]">*</span>
+                  <label className="block text-[11px] font-semibold tracking-wider text-[#1A1A1A] uppercase">
+                    Contact Number <span className="text-[#ba1a1a]">*</span>
                   </label>
                   <div className="flex gap-2">
                     <select
                       name="contactCountry"
                       value={formData.contactCountry}
                       onChange={handleChange}
-                      className="bg-[#121216] text-xs sm:text-sm text-[#e4e1e7] px-2.5 sm:px-3 py-3 rounded-lg border border-[#2a2c35] focus:outline-none focus:border-[#fabc4d] transition-all duration-300 cursor-pointer"
+                      className="bg-[#FAF9F5] text-xs sm:text-sm text-[#1A1A1A] px-3 py-3 rounded-lg border border-[#E8E6DF] focus:outline-none focus:border-[#1A1A1A] cursor-pointer"
                     >
                       {countryCodes.map((item) => (
-                        <option key={item.code} value={item.code} className="bg-[#131317] text-[#e4e1e7]">
+                        <option key={item.code} value={item.code}>
                           {item.label}
                         </option>
                       ))}
@@ -245,15 +231,16 @@ const Register = () => {
                       value={formData.contactNumber}
                       onChange={handleChange}
                       placeholder="98765 43210"
-                      className="flex-1 bg-[#121216] text-sm text-[#e4e1e7] placeholder-[#5c5e69] px-4 py-3 rounded-lg border border-[#2a2c35] focus:outline-none focus:border-[#fabc4d] focus:ring-1 focus:ring-[#fabc4d]/40 transition-all duration-300 tracking-wide"
+                      className="flex-1 bg-[#FAF9F5] text-xs sm:text-sm text-[#1A1A1A] placeholder-[#8C8A85] px-4 py-3 rounded-lg border border-[#E8E6DF] focus:outline-none focus:border-[#1A1A1A] focus:bg-white transition-all duration-200"
+                      required
                     />
                   </div>
                 </div>
 
-                {/* Password with Eye Toggle */}
+                {/* Password Field */}
                 <div className="space-y-1.5">
-                  <label className="block text-[11px] font-semibold tracking-wider text-[#d4c4b0] uppercase">
-                    Password <span className="text-[#fabc4d]">*</span>
+                  <label className="block text-[11px] font-semibold tracking-wider text-[#1A1A1A] uppercase">
+                    Password <span className="text-[#ba1a1a]">*</span>
                   </label>
                   <div className="relative flex items-center">
                     <input
@@ -262,12 +249,13 @@ const Register = () => {
                       value={formData.password}
                       onChange={handleChange}
                       placeholder="••••••••••••"
-                      className="w-full bg-[#121216] text-sm text-[#e4e1e7] placeholder-[#5c5e69] px-4 py-3 pr-12 rounded-lg border border-[#2a2c35] focus:outline-none focus:border-[#fabc4d] focus:ring-1 focus:ring-[#fabc4d]/40 transition-all duration-300"
+                      className="w-full bg-[#FAF9F5] text-xs sm:text-sm text-[#1A1A1A] placeholder-[#8C8A85] px-4 py-3 pr-12 rounded-lg border border-[#E8E6DF] focus:outline-none focus:border-[#1A1A1A] focus:bg-white transition-all duration-200"
+                      required
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3.5 p-1 text-[#8e909a] hover:text-[#fabc4d] transition-colors duration-200 focus:outline-none"
+                      className="absolute right-3.5 p-1 text-[#757470] hover:text-[#1A1A1A] transition-colors duration-200 cursor-pointer"
                     >
                       {showPassword ? (
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -282,85 +270,49 @@ const Register = () => {
                     </button>
                   </div>
                 </div>
-                      
-                     
 
-                {/* Is Seller Checkbox Card */}
-                <div className="pt-1 ">
-                  <label className="group flex items-start gap-3 p-3 sm:p-3.5 rounded-xl border border-[#2a2c35] hover:border-[#e5a93c]/40 bg-[#121216]/70 cursor-pointer transition-all duration-300">
-                    <div className="relative flex items-center justify-center mt-0.5">
-                      <input
-                        type="checkbox"
-                        name="isSeller"
-                        checked={formData.isSeller}
-                        onChange={handleChange}
-                        className="peer appearance-none w-5 h-5 rounded border border-[#504535] checked:bg-gradient-to-br checked:from-[#ffd700] checked:to-[#e5a93c] checked:border-transparent transition-all duration-200 cursor-pointer focus:outline-none"
-                      />
-                      <svg
-                        className="absolute w-3 h-3 text-[#0b0c10] pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity duration-200"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <div className="flex-1 select-none">
-                      <span className="block text-xs font-semibold text-[#e4e1e7] group-hover:text-[#fabc4d] transition-colors duration-200">
-                        Register as Seller / Brand Partner
-                      </span>
-                      <p className="text-[11px] text-[#8e909a] font-light mt-0.5 leading-snug">
-                        Sell apparel, manage designer drops, and access the Snitch seller console.
-                      </p>
-                    </div>
+                {/* Seller Checkbox */}
+                <div className="pt-1">
+                  <label className="flex items-center gap-2.5 cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      name="isSeller"
+                      checked={formData.isSeller}
+                      onChange={handleChange}
+                      className="w-4 h-4 rounded border-[#E8E6DF] accent-[#1A1A1A] cursor-pointer"
+                    />
+                    <span className="text-xs text-[#5C5A55]">
+                      Register as a <strong className="text-[#1A1A1A]">Seller Partner</strong> (List garments &amp; manage inventory)
+                    </span>
                   </label>
                 </div>
-                       
-                {/* Submit Action */}
-                <div className="pt-2 mt-2">
+
+                {/* Submit Action Button */}
+                <div className="pt-2">
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full relative group overflow-hidden rounded-lg p-[1px] font-semibold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full px-6 py-3.5 bg-[#1A1A1A] hover:bg-[#2D2D2D] text-white font-semibold text-xs uppercase tracking-wider rounded-lg shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99] disabled:opacity-50"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#ffd700] via-[#fabc4d] to-[#e5a93c] rounded-lg transition-all duration-300 group-hover:shadow-[0_0_28px_rgba(250,188,77,0.4)]" />
-                    <div className="relative px-6 py-3.5 bg-gradient-to-r from-[#ffd700] to-[#e5a93c] text-[#0b0c10] font-semibold rounded-lg flex items-center justify-center gap-2 group-hover:bg-opacity-95 transition-all">
-                      {loading ? (
-                        <span className="flex items-center gap-2">
-                          <svg className="animate-spin h-4 w-4 text-[#0b0c10]" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
-                          </svg>
-                          Joining Snitch Privé...
-                        </span>
-                      ) : (
-                        <span className="flex items-center gap-1.5">
-                          Create Account
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                          </svg>
-                        </span>
-                      )}
-                    </div>
+                    <span>{loading ? 'Creating Account...' : 'Create Account'}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
                   </button>
                 </div>
-                <ContinueWithGoogle/>
+
+                <ContinueWithGoogle />
               </form>
 
-              {/* Divider */}
-              <div className="my-6 h-[1px] bg-gradient-to-r from-transparent via-[#e5a93c]/20 to-transparent" />
+              <div className="my-6 h-[1px] bg-[#E8E6DF]" />
 
-              {/* Sign In Link */}
-              <div className="text-center text-xs text-[#8e909a]">
-                Already part of the Snitch community?{' '}
+              <div className="text-center text-xs text-[#757470]">
+                Already a member?{' '}
                 <Link
                   to="/login"
-                  className="text-[#fabc4d] hover:text-[#ffd700] font-medium transition-colors underline-offset-4 hover:underline"
+                  className="text-[#1A1A1A] font-semibold underline underline-offset-4 hover:text-[#B89758] transition-colors"
                 >
-                  Sign In
+                  Sign in to your account
                 </Link>
               </div>
             </div>
@@ -369,16 +321,16 @@ const Register = () => {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 border-t border-[#2a2c35]/50 py-5 px-6 md:px-12 text-center text-[11px] text-[#5c5e69] tracking-wider uppercase">
+      {/* Footer Bar */}
+      <footer className="border-t border-[#E8E6DF] py-5 px-6 md:px-12 text-center text-[11px] text-[#757470] tracking-wider uppercase bg-[#FAF9F5]">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p>© {new Date().getFullYear()} SNITCH APPAREL LTD. ALL RIGHTS RESERVED.</p>
-          <div className="flex items-center gap-4 text-[#8e909a]">
-            <a href="#privacy" className="hover:text-[#fabc4d] transition-colors">Privacy Policy</a>
+          <p>© {new Date().getFullYear()} SNITCH APPAREL ATELIER. ALL RIGHTS RESERVED.</p>
+          <div className="flex items-center gap-4">
+            <a href="#privacy" className="hover:text-[#1A1A1A] transition-colors">Privacy Policy</a>
             <span>•</span>
-            <a href="#terms" className="hover:text-[#fabc4d] transition-colors">Terms of Service</a>
+            <a href="#terms" className="hover:text-[#1A1A1A] transition-colors">Terms of Service</a>
             <span>•</span>
-            <a href="#support" className="hover:text-[#fabc4d] transition-colors">Concierge</a>
+            <a href="#support" className="hover:text-[#1A1A1A] transition-colors">Concierge</a>
           </div>
         </div>
       </footer>
