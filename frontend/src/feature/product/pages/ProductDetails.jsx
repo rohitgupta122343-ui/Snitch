@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import { useProduct } from '../hook/useProduct'
+import { useCart } from '../../cart/hook/useCart'
 
 /* ─── Currency symbol map ───────────────────────────────── */
 const CURRENCY_SYMBOL = {
@@ -105,6 +106,8 @@ const ProductDetails = () => {
   const user = useSelector((state) => state.auth.user)
   const { handleGetProductDetails } = useProduct()
 
+  const { handleAddItem } = useCart()
+
   const [loading, setLoading] = useState(true)
   const [selectedImage, setSelectedImage] = useState(0)
   const [selectedAttrs, setSelectedAttrs] = useState({})
@@ -148,6 +151,8 @@ const ProductDetails = () => {
   const images = activeImages
   const hasImages = images.length > 0
 
+  
+
   const handleAttrSelect = (key, value) => {
     setSelectedAttrs((prev) => {
       const next = { ...prev }
@@ -168,7 +173,7 @@ const ProductDetails = () => {
     if (hasImages) setSelectedImage((prev) => (prev - 1 + images.length) % images.length)
   }
 
-  const handleAddToCart = () => {
+  const handleAddToCartMessage = () => {
     const attrStr = Object.entries(selectedAttrs).map(([k, v]) => `${k}: ${v}`).join(', ')
     setAddedToast({
       title: 'Added to Bag',
@@ -607,13 +612,16 @@ const ProductDetails = () => {
                   {/* Add to Bag */}
                   <button
                     type="button"
-                    onClick={handleAddToCart}
+                    onClick={ ()=>{
+                      handleAddToCartMessage()
+                      handleAddItem({productId:product._id,variantsId:selectedVariant._id})
+                    } }
                     className="flex-1 px-5 py-3.5 rounded-lg border border-[#1A1A1A] bg-white hover:bg-[#F5F4EE] text-[#1A1A1A] font-semibold text-xs tracking-wider uppercase transition-all duration-200 flex items-center justify-center gap-2 group shadow-xs cursor-pointer active:scale-[0.99]"
                   >
                     <svg className="w-4 h-4 group-hover:scale-105 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
-                    Add to Bag
+                    Add to Cart
                   </button>
 
                   {/* Buy Now */}
@@ -718,7 +726,7 @@ const ProductDetails = () => {
           <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={handleAddToCart}
+              onClick={handleAddToCartMessage}
               className="p-3 rounded-lg border border-[#E8E6DF] bg-white text-[#1A1A1A] active:scale-95 transition-all shadow-xs"
               title="Add to Bag"
             >
