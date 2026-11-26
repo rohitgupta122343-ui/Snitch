@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import { useProduct } from '../hook/useProduct'
 import { useCart } from '../../cart/hook/useCart'
+import Header from '../../shared/components/Header'
 
 /* ─── Currency symbol map ───────────────────────────────── */
 const CURRENCY_SYMBOL = {
@@ -151,7 +152,7 @@ const ProductDetails = () => {
   const images = activeImages
   const hasImages = images.length > 0
 
-  
+
 
   const handleAttrSelect = (key, value) => {
     setSelectedAttrs((prev) => {
@@ -190,76 +191,13 @@ const ProductDetails = () => {
     setTimeout(() => setAddedToast(null), 3000)
   }
 
+
+
   return (
     <div className="min-h-screen w-full bg-[#FAF9F5] text-[#1A1A1A] flex flex-col selection:bg-[#EAE4D3] selection:text-[#1A1A1A] antialiased">
       {/* ════════════════════════════════════
           STICKY NAVBAR
           ════════════════════════════════════ */}
-      <header className="w-full border-b border-[#E8E6DF] bg-white/90 backdrop-blur-md sticky top-0 z-50 flex-shrink-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 h-18 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => navigate(-1)}
-              className="group inline-flex items-center gap-2 text-xs tracking-wider uppercase font-semibold text-[#5C5A55] hover:text-[#1A1A1A] transition-colors duration-200 cursor-pointer"
-            >
-              <span className="w-8 h-8 rounded-full border border-[#E8E6DF] bg-white flex items-center justify-center group-hover:border-[#1A1A1A] group-hover:bg-[#F5F4EE] transition-all shadow-xs">
-                <svg className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-              </span>
-              <span className="hidden sm:inline">Back</span>
-            </button>
-
-            <div className="h-5 w-[1px] bg-[#E8E6DF] hidden sm:block" />
-
-            <Link
-              to="/"
-              className="flex items-center gap-2 tracking-[0.25em] text-xl sm:text-2xl font-bold text-[#1A1A1A] hover:text-[#B89758] transition-colors"
-            >
-              <span className="font-serif">SNITCH</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#B89758]" />
-            </Link>
-          </div>
-
-          <div className="flex items-center gap-3">
-            {user ? (
-              <div className="flex items-center gap-3">
-                {user.role === 'seller' && (
-                  <Link
-                    to="/seller/dashboard"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[#E8E6DF] text-[#1A1A1A] hover:bg-[#F5F4EE] hover:border-[#1A1A1A] text-[11px] font-semibold tracking-wider uppercase transition-colors shadow-xs"
-                  >
-                    Dashboard
-                  </Link>
-                )}
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F5F4EE] border border-[#E8E6DF]">
-                  <div className="w-6 h-6 rounded-full bg-[#1A1A1A] text-[#FAF9F5] flex items-center justify-center font-bold text-xs uppercase">
-                    {(user.fullName || user.email || 'U')[0]}
-                  </div>
-                  <span className="text-xs font-medium text-[#1A1A1A] max-w-[130px] truncate hidden sm:inline">
-                    {user.fullName || user.email}
-                  </span>
-                </div>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Link
-                  to="/login"
-                  className="text-[11px] tracking-wider uppercase font-semibold text-[#5C5A55] hover:text-[#1A1A1A] transition-colors px-3 py-1.5"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  to="/register"
-                  className="inline-flex items-center px-4 py-2 rounded-md bg-[#1A1A1A] text-white hover:bg-[#2D2D2D] font-semibold text-[11px] tracking-wider uppercase transition-all shadow-sm"
-                >
-                  Join Privé
-                </Link>
-              </div>
-            )}
-          </div>
-        </div>
-      </header>
 
       {/* ── Toast Notification ── */}
       {addedToast && (
@@ -329,11 +267,10 @@ const ProductDetails = () => {
                         key={img._id || idx}
                         onClick={() => setSelectedImage(idx)}
                         onMouseEnter={() => setSelectedImage(idx)}
-                        className={`relative w-16 h-20 sm:w-20 sm:h-24 rounded-lg overflow-hidden border-2 transition-all duration-200 flex-shrink-0 bg-[#F5F4EE] cursor-pointer ${
-                          selectedImage === idx
+                        className={`relative w-16 h-20 sm:w-20 sm:h-24 rounded-lg overflow-hidden border-2 transition-all duration-200 flex-shrink-0 bg-[#F5F4EE] cursor-pointer ${selectedImage === idx
                             ? 'border-[#1A1A1A] shadow-xs scale-[1.02]'
                             : 'border-[#E8E6DF] opacity-75 hover:opacity-100 hover:border-[#B89758]'
-                        }`}
+                          }`}
                       >
                         <img src={img.url} alt={`${product.title} thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
                         {idx === 0 && (
@@ -612,10 +549,10 @@ const ProductDetails = () => {
                   {/* Add to Bag */}
                   <button
                     type="button"
-                    onClick={ ()=>{
+                    onClick={() => {
                       handleAddToCartMessage()
-                      handleAddItem({productId:product._id,variantsId:selectedVariant._id})
-                    } }
+                      handleAddItem({ productId: product._id, variantId: selectedVariant._id, quantity })
+                    }}
                     className="flex-1 px-5 py-3.5 rounded-lg border border-[#1A1A1A] bg-white hover:bg-[#F5F4EE] text-[#1A1A1A] font-semibold text-xs tracking-wider uppercase transition-all duration-200 flex items-center justify-center gap-2 group shadow-xs cursor-pointer active:scale-[0.99]"
                   >
                     <svg className="w-4 h-4 group-hover:scale-105 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -640,11 +577,10 @@ const ProductDetails = () => {
                   <button
                     type="button"
                     onClick={() => setIsWishlisted((prev) => !prev)}
-                    className={`px-4 py-3.5 rounded-lg border transition-all duration-200 flex items-center justify-center flex-shrink-0 cursor-pointer ${
-                      isWishlisted
+                    className={`px-4 py-3.5 rounded-lg border transition-all duration-200 flex items-center justify-center flex-shrink-0 cursor-pointer ${isWishlisted
                         ? 'border-[#ba1a1a] bg-rose-50 text-[#ba1a1a]'
                         : 'border-[#E8E6DF] bg-white text-[#757470] hover:text-[#1A1A1A] hover:border-[#1A1A1A]'
-                    }`}
+                      }`}
                     title={isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
                   >
                     <svg
@@ -670,9 +606,8 @@ const ProductDetails = () => {
                       <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
-                        className={`pb-2.5 transition-colors relative cursor-pointer ${
-                          activeTab === tab ? 'text-[#1A1A1A]' : 'text-[#757470] hover:text-[#1A1A1A]'
-                        }`}
+                        className={`pb-2.5 transition-colors relative cursor-pointer ${activeTab === tab ? 'text-[#1A1A1A]' : 'text-[#757470] hover:text-[#1A1A1A]'
+                          }`}
                       >
                         {tab === 'details' ? 'Specifications' : tab === 'care' ? 'Fabric & Care' : 'Shipping & Returns'}
                         {activeTab === tab && <span className="absolute bottom-0 inset-x-0 h-[2px] bg-[#1A1A1A]" />}

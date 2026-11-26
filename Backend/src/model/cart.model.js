@@ -4,29 +4,29 @@ import priceSchema from './price.schema.js'
 
 const cartSchema = new mongoose.Schema({
 
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'user',
-        required:true
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users',
+        required: true
     },
-    items:[
+    items: [
         {
-            product:{
-                type:mongoose.Schema.Types.ObjectId,
-                ref:'product',
-                required:true
+            product: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'products',
+                required: true
             },
-            variant:{
-                type:mongoose.Schema.Types.ObjectId,
-                ref:'product.variants'
-            }, 
-             quantity: {
+            variant: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'product.variants'
+            },
+            quantity: {
                 type: Number,
                 default: 1
             },
-            price:{
-                type:priceSchema,
-                required:true
+            price: {
+                type: priceSchema,
+                required: true
             }
         }
     ]

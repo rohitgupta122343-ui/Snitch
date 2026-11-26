@@ -205,76 +205,7 @@ const Home = () => {
       {/* ════════════════════════════════════
           NAVBAR
           ════════════════════════════════════ */}
-      <header className="w-full border-b border-[#E8E6DF] bg-white/90 backdrop-blur-md sticky top-0 z-50 flex-shrink-0 transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 h-18 flex items-center justify-between gap-4">
-
-          {/* Logo */}
-          <Link
-            to="/"
-            className="flex items-center gap-2 tracking-[0.25em] text-xl sm:text-2xl font-bold text-[#1A1A1A] hover:text-[#B89758] transition-colors font-serif"
-          >
-            SNITCH
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B89758]" />
-          </Link>
-
-          {/* Editorial category navigation */}
-          <nav className="hidden md:flex items-center gap-7 text-[11px] tracking-[0.18em] uppercase font-semibold text-[#5C5A55]">
-            <a
-              href="#catalogue"
-              onClick={() => setSelectedCategory('All')}
-              className={`hover:text-[#1A1A1A] transition-colors py-1 ${selectedCategory === 'All' ? 'text-[#1A1A1A] border-b border-[#1A1A1A]' : ''}`}
-            >
-              All Pieces
-            </a>
-            <a href="#catalogue" className="hover:text-[#1A1A1A] transition-colors py-1">Tailoring</a>
-            <a href="#catalogue" className="hover:text-[#1A1A1A] transition-colors py-1">Outerwear</a>
-            <a href="#catalogue" className="hover:text-[#1A1A1A] transition-colors py-1">Knitwear</a>
-            <a href="#story" className="hover:text-[#1A1A1A] transition-colors py-1">Atelier</a>
-          </nav>
-
-          {/* Right Actions */}
-          <div className="flex items-center gap-3">
-            {user ? (
-              <div className="flex items-center gap-3">
-                {user.role === 'seller' && (
-                  <Link
-                    to="/seller/dashboard"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[#E8E6DF] text-[#1A1A1A] hover:bg-[#F5F4EE] hover:border-[#1A1A1A] text-[11px] font-semibold tracking-wider uppercase transition-all shadow-xs"
-                  >
-                    <svg className="w-3.5 h-3.5 text-[#B89758]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 10h18M3 14h18m-9-4v8m-7 4h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    Dashboard
-                  </Link>
-                )}
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#F5F4EE] border border-[#E8E6DF]">
-                  <div className="w-6 h-6 rounded-full bg-[#1A1A1A] text-[#FAF9F5] flex items-center justify-center font-bold text-xs uppercase">
-                    {(user.fullName || user.email || 'U')[0]}
-                  </div>
-                  <span className="text-xs font-medium text-[#1A1A1A] max-w-[130px] truncate hidden sm:inline">
-                    {user.fullName || user.email}
-                  </span>
-                </div>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Link
-                  to="/login"
-                  className="text-[11px] tracking-wider uppercase font-semibold text-[#5C5A55] hover:text-[#1A1A1A] transition-colors px-3 py-1.5"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  to="/register"
-                  className="inline-flex items-center px-4 py-2 rounded-md bg-[#1A1A1A] text-white hover:bg-[#2D2D2D] font-semibold text-[11px] tracking-wider uppercase transition-all shadow-sm hover:shadow"
-                >
-                  Join Privé
-                </Link>
-              </div>
-            )}
-          </div>
-        </div>
-      </header>
+     
 
       {/* ════════════════════════════════════
           EDITORIAL HERO SECTION

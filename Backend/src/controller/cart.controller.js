@@ -10,7 +10,7 @@ export async function addTocart(req,res){
 
     const product = await productModel.findOne({
         _id:productId,
-        "variants.id" : variantId
+        "variants._id" : variantId
     })
 
     if(!product){
@@ -33,7 +33,7 @@ export async function addTocart(req,res){
     const quantityInCart = cart.items.find(item => item.product.toString() === productId && item.variant?.toString() === variantId).quantity
 
        if(quantityInCart + quantity > stock){
-        return res.status|(400).json({
+        return res.status(400).json({
             message : `only left in a stock ${stock} and you already have ${quantityInCart} items`,
             success: false
         })
@@ -58,11 +58,13 @@ export async function addTocart(req,res){
         })
     }
 
+    const variant = product.variants.find(v => v._id.toString() === variantId)
+
     cart.items.push({
         product:productId,
         variant:variantId,
         quantity,
-        price:product.price
+        price:variant?.price || product.price
     })
 
     await cart.save()
