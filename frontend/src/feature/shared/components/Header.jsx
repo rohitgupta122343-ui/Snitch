@@ -2,9 +2,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router'
+import { useNavigate } from 'react-router'
 
 const Header = () => {
       const user = useSelector((state) => state.auth.user)
+      const navigate = useNavigate()
     
   return (
        <header className="w-full border-b border-[#E8E6DF] bg-white/90 backdrop-blur-md sticky top-0 z-50 flex-shrink-0">
