@@ -23,3 +23,37 @@ export const getCart = async()=>{
     return res.data
 
 }
+
+export const incrementCartItemApi = async({productId,variantId,quantity=1})=>{
+
+    const res = await api.patch(`/quantity/increment/${productId}/${variantId}`,quantity)
+
+    return res.data
+
+}
+
+export const decrementCartItemApi = async({productId,variantId})=>{
+
+    const res = await api.patch(`/quantity/decrement/${productId}/${variantId}`)
+
+    return res.data
+
+}
+
+export const createCartOrder = async()=>{
+
+    const res = await api.post('/payment/create/order')
+    return res.data
+}
+
+export const verifyCartOrder = async({razorpay_order_id, razorpay_payment_id, razorpay_signature})=>{
+
+    const res = await api.post('/payment/verify/order',{
+        razorpay_order_id,
+        razorpay_payment_id,
+        razorpay_signature
+    })
+
+    return res.data
+
+}

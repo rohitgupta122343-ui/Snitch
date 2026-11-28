@@ -11,6 +11,7 @@ import ProductDetails from "../feature/product/pages/ProductDetails";
 import SellerProductDetails from "../feature/product/pages/SellerProductDetails";
 import Cart from "../feature/cart/pages/Cart";
 import AppLayout from "./AppLayout";
+import OrderSuccess from "../feature/order/pages/OrderSuccess";
 
 export const routes = createBrowserRouter([
    {
@@ -34,6 +35,10 @@ export const routes = createBrowserRouter([
     {
         path:'/cart',
         element:<Protected role="buyyer"><Cart/></Protected>
+    },
+    {
+        path:'/order-success',
+        element:<OrderSuccess/>
     },
     {
         path:'/seller',

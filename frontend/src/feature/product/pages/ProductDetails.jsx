@@ -137,6 +137,17 @@ const ProductDetails = () => {
     setSelectedImage(0)
   }, [productDetails?._id])
 
+  useEffect(() => {
+  const firstVariant = productDetails?.variants?.[0]
+  if (firstVariant?.attributes) {
+    setSelectedAttrs(normAttrs(firstVariant.attributes))
+  } else {
+    setSelectedAttrs({})
+  }
+  setSelectedImage(0)
+  setQuantity(1)
+}, [productDetails?._id])
+
   const product = productDetails
   const variants = product?.variants || []
   const attrKeys = getAttributeKeys(variants)
@@ -409,29 +420,7 @@ const ProductDetails = () => {
                             <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#757470]">
                               {key}
                             </span>
-                            {selectedVal ? (
-                              <>
-                                <span className="text-[10px] text-[#757470]">·</span>
-                                <span className="text-[11px] font-semibold text-[#1A1A1A]">
-                                  {selectedVal}
-                                </span>
-                                <button
-                                  type="button"
-                                  onClick={() => handleAttrSelect(key, selectedVal)}
-                                  className="ml-auto text-[9px] uppercase tracking-wider text-[#757470] hover:text-[#ba1a1a] transition-colors flex items-center gap-1 cursor-pointer"
-                                  title={`Clear ${key}`}
-                                >
-                                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-                                  </svg>
-                                  Clear
-                                </button>
-                              </>
-                            ) : (
-                              <span className="ml-auto text-[9px] uppercase tracking-wider text-[#8C8A85] italic">
-                                Select option
-                              </span>
-                            )}
+                          
                           </div>
 
                           {/* Value pills */}
@@ -498,18 +487,7 @@ const ProductDetails = () => {
                         )}
                       </div>
 
-                      {hasSelections && (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setSelectedAttrs({})
-                            setSelectedImage(0)
-                          }}
-                          className="text-[10px] uppercase tracking-wider font-semibold text-[#1A1A1A] hover:text-[#B89758] transition-colors underline underline-offset-4 flex items-center gap-1 cursor-pointer"
-                        >
-                          Reset
-                        </button>
-                      )}
+                     
                     </div>
                   </div>
                 )}
